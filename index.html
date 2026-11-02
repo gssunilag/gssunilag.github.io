@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geosciences Students' Society | University of Lagos</title>
+<meta name="description" content="Official website of the Geosciences Students' Society (GSS), Department of Geosciences, University of Lagos. Home of GeoNova 26/27.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   BRAND TOKENS (only the 4 base colours + tints of them)
+   ========================================================= */
+:root{
+  --black:#000000;
+  --brown:#9B6737;
+  --azure:#93DCEE;
+  --white:#FFFFFF;
+  --brown-deep:#6E4826;
+  --brown-tint:#F5EDE4;
+  --azure-tint:#E9F8FC;
+  --ink:#111111;
+  --muted:#5b5b5b;
+  --line:rgba(0,0,0,.12);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --notch:18px;
+  --max:1240px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-radius:0 !important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Poppins',system-ui,sans-serif;font-size:1rem;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(var(--max),100% - 32px);margin-inline:auto}
+section{position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Typography: tight tracking on big type, normal on body */
+h1,h2,h3,h4{font-weight:700;line-height:1.08;letter-spacing:-.02em}
+h1{font-size:clamp(2.3rem,6vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.8rem,4vw,3rem)}
+h3{font-size:1.2rem;letter-spacing:-.01em;line-height:1.25}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+.eyebrow::before{content:"";width:22px;height:3px;background:currentColor}
+.lead{font-size:1.08rem;color:var(--muted);max-width:60ch}
+.sec{padding:clamp(64px,9vw,120px) 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:44px}
+.sec-head h2{margin-top:12px;max-width:18ch}
+
+/* Corner brackets: the site's signature motif */
+.corners{position:relative}
+.corners::before,.corners::after{content:"";position:absolute;width:26px;height:26px;pointer-events:none;z-index:2;transition:width .35s var(--ease),height .35s var(--ease)}
+.corners::before{top:-1px;left:-1px;border-top:3px solid var(--brown);border-left:3px solid var(--brown)}
+.corners::after{bottom:-1px;right:-1px;border-bottom:3px solid var(--brown);border-right:3px solid var(--brown)}
+.corners:hover::before,.corners:hover::after{width:44px;height:44px}
+.notch{clip-path:polygon(0 0,calc(100% - var(--notch)) 0,100% var(--notch),100% 100%,var(--notch) 100%,0 calc(100% - var(--notch)))}
+
+/* Buttons: instant feedback on press */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;font-weight:600;font-size:.95rem;border:2px solid var(--black);background:var(--black);color:var(--white);transition:transform .1s ease-out,background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--brown);border-color:var(--brown)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.ghost:hover{background:var(--azure);color:var(--black);border-color:var(--azure)}
+.btn.azure{background:var(--azure);color:var(--black);border-color:var(--azure)}
+.btn.azure:hover{background:var(--white);border-color:var(--white)}
+.btn svg{width:18px;height:18px}
+
+/* Scroll progress + ticker */
+#progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--brown);transform-origin:0 50%;transform:scaleX(0);z-index:200}
+.ticker{background:var(--black);color:var(--azure);font-size:.82rem;font-weight:500;overflow:hidden;white-space:nowrap;position:relative;z-index:101}
+.ticker-track{display:inline-flex;gap:56px;padding:10px 0;animation:tick 48s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:inline-flex;align-items:center;gap:14px}
+.ticker-track span::before{content:"";width:8px;height:8px;background:var(--brown);transform:rotate(45deg)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* Navigation: translucent material, content scrolls under */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.74);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 1px 0 var(--line),0 10px 30px -18px rgba(0,0,0,.35)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;line-height:1.1}
+.brand img{width:46px;height:46px;object-fit:contain}
+.brand small{display:block;font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brown)}
+.links{display:flex;gap:4px;list-style:none}
+.links a{display:block;padding:10px 12px;font-size:.9rem;font-weight:500;position:relative}
+.links a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--brown);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.links a:hover::after,.links a.active::after{transform:scaleX(1)}
+.nav .btn{padding:10px 18px}
+.burger{display:none;width:46px;height:46px;border:2px solid var(--black);position:relative}
+.burger i{position:absolute;left:10px;right:10px;height:2px;background:var(--black);transition:transform .3s var(--ease),opacity .2s}
+.burger i:nth-child(1){top:14px}.burger i:nth-child(2){top:21px}.burger i:nth-child(3){top:28px}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(380px,88vw);background:var(--black);color:var(--white);z-index:150;padding:96px 28px 28px;transform:translateX(100%);transition:transform .45s var(--ease);display:flex;flex-direction:column;gap:6px}
+.drawer.open{transform:none}
+.drawer a{font-size:1.35rem;font-weight:600;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between}
+.drawer a::after{content:"\2197";color:var(--azure)}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:140;opacity:0;pointer-events:none;transition:opacity .35s}
+.scrim.show{opacity:1;pointer-events:auto}
+
+/* Hero */
+.hero{background:var(--black);color:var(--white);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:72px 0 96px}
+.hero .eyebrow{color:var(--azure)}
+.hero h1{margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--azure)}
+.hero h1 span{color:var(--brown)}
+.hero p{color:rgba(255,255,255,.75);font-size:1.08rem;max-width:52ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-meta div{padding:18px 20px 0 0;margin-right:20px;border-right:1px solid rgba(255,255,255,.15)}
+.hero-meta div:last-child{border:0}
+.hero-meta b{display:block;font-size:1.3rem;font-weight:700;color:var(--azure);letter-spacing:-.02em}
+.hero-meta small{font-size:.78rem;color:rgba(255,255,255,.6)}
+.hero-art{position:relative}
+.hero-art .frame{position:relative;aspect-ratio:4/4.4;background:var(--brown-deep)}
+.hero-art .frame img{width:100%;height:100%;object-fit:cover}
+.hero-art .corners::before,.hero-art .corners::after{border-color:var(--azure);width:46px;height:46px;margin:-14px}
+.badge-card{position:absolute;left:-34px;bottom:34px;background:var(--azure);color:var(--black);padding:18px 22px;max-width:250px;box-shadow:12px 12px 0 var(--brown)}
+.badge-card b{display:block;font-size:2rem;line-height:1;font-weight:800;letter-spacing:-.03em}
+.badge-card span{font-size:.8rem;font-weight:500}
+.tag-card{position:absolute;right:-14px;top:28px;background:var(--white);color:var(--black);padding:10px 16px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;border-left:5px solid var(--brown)}
+
+/* Strata band divider (rock layers) */
+.strata{display:grid;grid-template-rows:14px 6px 22px 4px 10px;height:56px}
+.strata i:nth-child(1){background:var(--brown)}
+.strata i:nth-child(2){background:var(--black)}
+.strata i:nth-child(3){background:var(--azure)}
+.strata i:nth-child(4){background:var(--brown-deep)}
+.strata i:nth-child(5){background:var(--black)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--black)}
+.stat{padding:30px 24px;border-right:2px solid var(--black);transition:background .25s}
+.stat:last-child{border-right:0}
+.stat:hover{background:var(--azure-tint)}
+.stat b{display:block;font-size:clamp(2rem,3.4vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--brown)}
+.stat span{display:block;margin-top:10px;font-size:.85rem;color:var(--muted);line-height:1.4}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about-img{position:relative}
+.about-img .ph{aspect-ratio:5/4;background:var(--brown-tint)}
+.about-img .ph img{width:100%;height:100%;object-fit:cover}
+.about-img .stamp{position:absolute;right:-18px;bottom:-18px;background:var(--black);color:var(--white);padding:18px 22px;font-size:.82rem;max-width:230px}
+.about-img .stamp b{color:var(--azure);display:block;font-size:1rem}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
+.pillar{padding:22px;border:1.5px solid var(--line);background:var(--white);transition:transform .3s var(--ease),border-color .3s}
+.pillar:hover{transform:translateY(-4px);border-color:var(--brown)}
+.pillar h3{font-size:1rem;margin:12px 0 6px}
+.pillar p{font-size:.88rem;color:var(--muted)}
+.ico{width:44px;height:44px;display:grid;place-items:center;background:var(--black);color:var(--azure)}
+.ico svg{width:22px;height:22px}
+
+/* Welcome note */
+.welcome{background:var(--brown);color:var(--white)}
+.welcome-grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
+.welcome .big{font-size:clamp(1.4rem,2.6vw,2.1rem);font-weight:600;line-height:1.3;letter-spacing:-.015em;max-width:40ch}
+.welcome .sig{margin-top:20px;font-size:.9rem;opacity:.85}
+.welcome .mark{width:150px;height:150px;background:var(--white);display:grid;place-items:center;padding:14px}
+.welcome .mark img{width:100%;height:100%;object-fit:contain}
+
+/* Wins timeline */
+.wins{background:var(--black);color:var(--white)}
+.wins .eyebrow{color:var(--azure)}
+.wins .lead{color:rgba(255,255,255,.7)}
+.timeline{position:relative;display:grid;gap:20px}
+.timeline::before{content:"";position:absolute;left:110px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.15)}
+.t-item{display:grid;grid-template-columns:110px 1fr;gap:34px;position:relative}
+.t-date{font-weight:700;color:var(--azure);font-size:.9rem;padding-top:22px;letter-spacing:.02em}
+.t-item::before{content:"";position:absolute;left:104px;top:26px;width:14px;height:14px;background:var(--brown);transform:rotate(45deg);outline:4px solid var(--black)}
+.t-card{background:#0d0d0d;border:1px solid rgba(255,255,255,.12);padding:24px 26px;transition:border-color .3s,transform .3s var(--ease)}
+.t-card:hover{border-color:var(--azure);transform:translateX(6px)}
+.t-card .kind{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--azure);color:var(--black);padding:4px 10px}
+.t-card .kind.b{background:var(--brown);color:var(--white)}
+.t-card h3{margin:12px 0 8px;font-size:1.25rem}
+.t-card p{color:rgba(255,255,255,.72);font-size:.92rem}
+.t-card ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.t-card li{font-size:.78rem;padding:5px 10px;border:1px solid rgba(255,255,255,.2)}
+
+/* Centre feature */
+.centre{display:grid;grid-template-columns:1.1fr .9fr;min-height:520px}
+.centre .pic{background:var(--brown-deep);position:relative;overflow:hidden}
+.centre .pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.centre:hover .pic img{transform:scale(1.04)}
+.centre .txt{background:var(--azure);padding:clamp(36px,5vw,72px);display:flex;flex-direction:column;justify-content:center}
+.centre .eyebrow{color:var(--black)}
+.centre h2{margin:14px 0 16px}
+.centre p{color:#1b1b1b}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:28px;border-top:2px solid var(--black)}
+.facts div{padding:16px 0;border-bottom:1px solid rgba(0,0,0,.2)}
+.facts div:nth-child(odd){padding-right:16px;border-right:1px solid rgba(0,0,0,.2)}
+.facts div:nth-child(even){padding-left:16px}
+.facts b{display:block;font-size:1.05rem}
+.facts small{font-size:.8rem;color:#2a2a2a}
+
+/* Exco */
+.exco-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 16px;font-size:.85rem;font-weight:600;border:1.5px solid var(--black);transition:background .2s,color .2s,transform .1s}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"],.chip[aria-selected="true"]{background:var(--black);color:var(--white)}
+.exco-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.exco-card{background:var(--white);text-align:left;display:flex;flex-direction:column;border:1.5px solid var(--line);transition:transform .35s var(--ease),border-color .3s,box-shadow .35s var(--ease)}
+.exco-card:hover{transform:translateY(-6px);border-color:var(--black);box-shadow:8px 8px 0 var(--azure)}
+.exco-card:active{transform:translateY(-6px) scale(.98)}
+.exco-card .ph{aspect-ratio:4/5;background:var(--brown-tint);overflow:hidden;position:relative}
+.exco-card .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s var(--ease)}
+.exco-card:hover .ph img{transform:scale(1.05)}
+.exco-card .ph::after{content:"View profile";position:absolute;left:0;right:0;bottom:0;background:var(--brown);color:var(--white);font-size:.78rem;font-weight:600;padding:9px 14px;transform:translateY(100%);transition:transform .35s var(--ease)}
+.exco-card:hover .ph::after{transform:none}
+.exco-card .meta{padding:14px 14px 16px;border-top:4px solid var(--brown)}
+.exco-card .meta b{display:block;font-size:.95rem;line-height:1.25;letter-spacing:-.01em}
+.exco-card .meta span{display:block;font-size:.76rem;color:var(--brown);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.exco-card.lead-card{grid-column:span 2;grid-row:span 3}
+.exco-card.lead-card .ph{aspect-ratio:auto;flex:1;min-height:340px}
+.exco-card.lead-card .ph img{object-position:50% 15%}
+.exco-card.lead-card .meta b{font-size:1.3rem}
+.noimg{display:grid;place-items:center;background:repeating-linear-gradient(0deg,var(--brown-tint) 0 18px,#efe3d6 18px 26px,var(--azure-tint) 26px 40px)}
+.noimg::before{content:attr(data-initials);font-size:2.4rem;font-weight:800;color:var(--brown);letter-spacing:-.03em}
+.archive{margin-top:40px;border:2px dashed var(--brown);padding:22px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;background:var(--brown-tint)}
+.archive p{font-size:.92rem;color:var(--muted);max-width:70ch}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:16px;pointer-events:none}
+.modal .bg{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .3s}
+.modal .box{position:relative;background:var(--white);width:min(880px,100%);max-height:92vh;overflow:auto;display:grid;grid-template-columns:.9fr 1.1fr;opacity:0;transform:scale(.94);transition:transform .4s var(--ease),opacity .3s}
+.modal.open{pointer-events:auto}
+.modal.open .bg{opacity:1}
+.modal.open .box{opacity:1;transform:none}
+.modal .ph{min-height:360px;background:var(--brown-tint)}
+.modal .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.modal .body{padding:36px 32px}
+.modal .body .role{color:var(--brown);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
+.modal .body h3{font-size:1.8rem;margin:8px 0 14px}
+.modal .body p{color:var(--muted);font-size:.95rem}
+.modal .body ul{margin:16px 0 0;list-style:none;display:grid;gap:8px}
+.modal .body li{display:flex;gap:10px;font-size:.9rem}
+.modal .body li::before{content:"";flex:0 0 8px;height:8px;margin-top:8px;background:var(--brown)}
+.x{position:absolute;top:12px;right:12px;width:42px;height:42px;background:var(--black);color:var(--white);font-size:1.3rem;z-index:3;transition:transform .1s,background .2s}
+.x:hover{background:var(--brown)}
+.x:active{transform:scale(.92)}
+
+/* Programmes */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--black);border-left:2px solid var(--black)}
+.prog{padding:32px 28px;border-right:2px solid var(--black);border-bottom:2px solid var(--black);position:relative;overflow:hidden;transition:color .35s}
+.prog::before{content:"";position:absolute;inset:0;background:var(--black);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
+.prog:hover{color:var(--white)}
+.prog:hover::before{transform:none}
+.prog:hover p{color:rgba(255,255,255,.75)}
+.prog:hover .ico{background:var(--azure);color:var(--black)}
+.prog .num{position:absolute;top:20px;right:22px;font-weight:800;font-size:.8rem;color:var(--brown)}
+.prog h3{margin:18px 0 8px}
+.prog p{font-size:.9rem;color:var(--muted);transition:color .35s}
+.prog-wrap{isolation:isolate}
+
+/* Discipline explorer */
+.explore{background:var(--brown-tint)}
+.ex-grid{display:grid;grid-template-columns:320px 1fr;gap:0;border:2px solid var(--black);background:var(--white)}
+.ex-tabs{display:flex;flex-direction:column;border-right:2px solid var(--black)}
+.ex-tab{text-align:left;padding:18px 22px;font-weight:600;font-size:.95rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;transition:background .2s,color .2s}
+.ex-tab:last-child{border-bottom:0}
+.ex-tab::after{content:"";width:10px;height:10px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);opacity:.35}
+.ex-tab:hover{background:var(--azure-tint)}
+.ex-tab[aria-selected="true"]{background:var(--black);color:var(--azure)}
+.ex-tab[aria-selected="true"]::after{opacity:1}
+.ex-panel{padding:clamp(28px,4vw,48px)}
+.ex-panel h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:10px 0 14px}
+.ex-panel>p{color:var(--muted);max-width:62ch}
+.ex-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+.ex-box{border:1.5px solid var(--line);padding:18px 20px}
+.ex-box h4{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brown);margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:.82rem;padding:6px 11px;background:var(--azure-tint);border-left:3px solid var(--azure)}
+.ex-panel.swap{animation:fade .35s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+
+/* Events */
+.ev-list{display:grid;gap:14px}
+.ev{display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;padding:18px;border:1.5px solid var(--line);transition:border-color .25s,background .25s}
+.ev:hover{border-color:var(--black);background:var(--azure-tint)}
+.ev .date{background:var(--black);color:var(--white);text-align:center;padding:12px 6px}
+.ev .date b{display:block;font-size:1.6rem;line-height:1;font-weight:800;color:var(--azure)}
+.ev .date small{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.ev h3{font-size:1.08rem}
+.ev p{font-size:.88rem;color:var(--muted);margin-top:4px}
+.ev .where{font-size:.78rem;font-weight:600;color:var(--brown);margin-top:6px;display:block}
+.ev .state{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border:1.5px solid var(--black);white-space:nowrap}
+.ev .state.up{background:var(--azure);border-color:var(--azure)}
+
+/* News */
+.news-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px}
+.post{display:flex;flex-direction:column;border:1.5px solid var(--line);background:var(--white);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.post:hover{transform:translateY(-6px);box-shadow:10px 10px 0 var(--brown)}
+.post .ph{aspect-ratio:16/10;background:var(--brown-tint);overflow:hidden}
+.post .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.post:hover .ph img{transform:scale(1.05)}
+.post .ph.pattern{display:grid;place-items:center;background:var(--black);color:var(--azure);font-weight:800;font-size:2.6rem;letter-spacing:-.03em;position:relative}
+.post .ph.pattern::after{content:"";position:absolute;inset:auto 0 0 0;height:22px;background:linear-gradient(var(--brown) 0 50%,var(--azure) 50%)}
+.post .body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.post .cat{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brown)}
+.post h3{font-size:1.1rem}
+.post p{font-size:.88rem;color:var(--muted);flex:1}
+.post .more{font-size:.85rem;font-weight:600;display:inline-flex;gap:8px;align-items:center}
+.post .more::after{content:"\2192";transition:transform .25s var(--ease)}
+.post:hover .more::after{transform:translateX(5px)}
+.post.big{grid-row:span 2}
+.post.big .ph{aspect-ratio:auto;flex:1;min-height:280px}
+.post.big h3{font-size:1.45rem}
+.news-side{display:grid;gap:22px}
+
+/* Gallery */
+.gal{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:10px}
+.g{position:relative;overflow:hidden;background:var(--brown-tint)}
+.g img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transition:transform .8s var(--ease)}
+.g:hover img{transform:scale(1.06)}
+.g span{position:absolute;left:0;bottom:0;background:var(--black);color:var(--white);font-size:.75rem;font-weight:500;padding:6px 10px;transform:translateY(105%);opacity:0;transition:transform .3s var(--ease),opacity .2s}
+.g:hover span,.g:focus-visible span{transform:none;opacity:1}
+.g.w2{grid-column:span 2}.g.h2{grid-row:span 2}.g.w3{grid-column:span 3}
+.lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb.open{opacity:1;pointer-events:auto}
+.lb figure{max-width:min(1000px,92vw);transform:scale(.94);transition:transform .4s var(--ease)}
+.lb.open figure{transform:none}
+.lb img{max-height:78vh;width:auto;margin:auto}
+.lb figcaption{color:var(--white);text-align:center;margin-top:14px;font-size:.9rem}
+.lb .nav-b{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;background:var(--white);color:var(--black);font-size:1.4rem;transition:background .2s,transform .1s}
+.lb .nav-b:hover{background:var(--azure)}
+.lb .nav-b:active{transform:translateY(-50%) scale(.92)}
+.lb .prev{left:16px}.lb .next{right:16px}
+
+/* Resources */
+.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.lvl{padding:22px 18px;background:var(--white);border:1.5px solid var(--line);border-top:6px solid var(--azure);transition:border-color .3s,transform .3s var(--ease)}
+.lvl:nth-child(even){border-top-color:var(--brown)}
+.lvl:hover{transform:translateY(-4px);border-color:var(--black)}
+.lvl b{font-size:1.6rem;font-weight:800;letter-spacing:-.03em}
+.lvl h3{font-size:.95rem;margin:4px 0 10px}
+.lvl ul{list-style:none;display:grid;gap:6px}
+.lvl li{font-size:.82rem;color:var(--muted);display:flex;gap:8px}
+.lvl li::before{content:"";flex:0 0 6px;height:6px;margin-top:8px;background:var(--brown)}
+.res-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+.res-box{border:2px solid var(--black);padding:28px}
+.res-box h3{margin-bottom:14px}
+.link-list{list-style:none;display:grid}
+.link-list a{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-weight:500;font-size:.92rem;transition:padding .25s var(--ease),color .2s}
+.link-list a:hover{padding-left:10px;color:var(--brown)}
+.link-list a::after{content:"\2197";font-weight:700}
+.link-list small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+.soft{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.soft div{padding:12px 14px;background:var(--azure-tint);border-left:4px solid var(--black);font-size:.85rem}
+.soft b{display:block;font-size:.92rem}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.qa{border-bottom:1.5px solid var(--black)}
+.qa:first-child{border-top:1.5px solid var(--black)}
+.qa button{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:600;font-size:1rem}
+.qa button i{flex:0 0 30px;height:30px;border:1.5px solid var(--black);position:relative;transition:background .2s}
+.qa button i::before,.qa button i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:currentColor;transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
+.qa button i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa.open button i{background:var(--azure);border-color:var(--azure)}
+.qa.open button i::after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 0 20px;color:var(--muted);font-size:.93rem;max-width:65ch}
+
+/* Join + Contact */
+.join{background:var(--black);color:var(--white);overflow:hidden}
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.join .eyebrow{color:var(--azure)}
+.join h2{margin:14px 0 16px}
+.join p.lead{color:rgba(255,255,255,.7)}
+.socials{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:30px}
+.socials a{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.18);font-weight:500;font-size:.9rem;transition:background .2s,color .2s,border-color .2s}
+.socials a:hover{background:var(--azure);color:var(--black);border-color:var(--azure)}
+.socials svg{width:20px;height:20px}
+form{display:grid;gap:14px;background:var(--white);color:var(--black);padding:32px}
+form h3{font-size:1.3rem}
+.field{display:grid;gap:6px}
+.field label{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea{font:inherit;font-size:.95rem;padding:12px 14px;border:1.5px solid rgba(0,0,0,.25);background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--black);box-shadow:4px 4px 0 var(--azure)}
+.field .err{font-size:.75rem;color:var(--brown-deep);min-height:1em}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-note{font-size:.78rem;color:var(--muted)}
+
+/* Footer */
+footer{background:#0a0a0a;color:rgba(255,255,255,.7);padding:64px 0 28px;font-size:.9rem}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+footer h4{color:var(--white);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a:hover{color:var(--azure)}
+.f-brand{display:flex;gap:14px;align-items:center;color:var(--white);font-weight:700;margin-bottom:14px}
+.f-brand img{width:54px;height:54px;object-fit:contain;background:var(--white);padding:3px}
+.f-bottom{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.8rem}
+
+#top{position:fixed;right:18px;bottom:18px;width:50px;height:50px;background:var(--brown);color:var(--white);z-index:90;font-size:1.2rem;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s var(--ease),background .2s}
+#top.show{opacity:1;transform:none;pointer-events:auto}
+#top:hover{background:var(--black)}
+#top:active{transform:scale(.92)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 60px));visibility:hidden;background:var(--black);color:var(--white);padding:14px 20px;border-left:5px solid var(--azure);z-index:400;font-size:.9rem;transition:transform .45s var(--ease),visibility 0s .45s}
+.toast.show{transform:translate(-50%,0);visibility:visible;transition:transform .45s var(--ease)}
+
+/* Reveal on scroll */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--azure);outline-offset:3px}
+
+/* Responsive */
+@media (max-width:1080px){
+  .links,.nav .btn{display:none}
+  .burger{display:block}
+  .hero-grid,.about-grid,.join-grid,.faq-grid,.centre{grid-template-columns:1fr}
+  .hero-art{max-width:560px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .stat:nth-child(3){border-right:0}
+  .stat:nth-child(n+4){border-top:2px solid var(--black)}
+  .exco-grid{grid-template-columns:repeat(3,1fr)}
+  .exco-card.lead-card{grid-column:span 3;grid-row:auto}
+  .exco-card.lead-card .ph{min-height:0;aspect-ratio:16/11}
+  .prog-grid{grid-template-columns:repeat(2,1fr)}
+  .news-grid{grid-template-columns:1fr 1fr}
+  .post.big{grid-column:span 2;grid-row:auto}
+  .levels{grid-template-columns:repeat(3,1fr)}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .centre .pic{min-height:340px}
+}
+@media (max-width:720px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-right:2px solid var(--black) !important;border-top:2px solid var(--black)}
+  .stat:nth-child(even){border-right:0 !important}
+  .stat:nth-child(-n+2){border-top:0}
+  .stat:last-child{grid-column:span 2;border-right:0 !important}
+  .exco-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .exco-card.lead-card{grid-column:auto}
+  .exco-card.lead-card .ph{aspect-ratio:4/5}
+  .exco-card.lead-card .meta b{font-size:.95rem}
+  .prog-grid,.news-grid,.res-row,.ex-cols,.row2,.pillars,.f-grid{grid-template-columns:1fr}
+  .post.big{grid-column:auto}
+  .ex-grid{grid-template-columns:1fr}
+  .ex-tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:2px solid var(--black)}
+  .ex-tab{white-space:nowrap;border-bottom:0;border-right:1px solid var(--line)}
+  .ex-tab::after{display:none}
+  .levels{grid-template-columns:1fr 1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .g.w3,.g.w2{grid-column:span 2}
+  .timeline::before{left:7px}
+  .t-item{grid-template-columns:1fr;gap:8px;padding-left:32px}
+  .t-item::before{left:1px;top:4px}
+  .t-date{padding-top:0}
+  .ev{grid-template-columns:76px 1fr}
+  .ev .state{grid-column:2;justify-self:start}
+  .modal .box{grid-template-columns:1fr}
+  .modal .ph{min-height:300px}
+  .welcome-grid{grid-template-columns:1fr}
+  .welcome .mark{width:110px;height:110px}
+  .badge-card{left:-6px;bottom:-24px}
+  .tag-card{right:-6px}
+  .hero-meta div{padding-right:16px;margin-right:16px}
+  .about-img .stamp{right:0}
+}
+
+/* Accessibility preferences */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition-duration:.01ms !important}
+  .rv{opacity:1;transform:none}
+  .ticker-track{white-space:normal;flex-wrap:wrap}
+}
+@media (prefers-reduced-transparency:reduce){
+  .nav{background:var(--white);backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+@media (prefers-contrast:more){
+  .nav{background:var(--white);border-bottom:2px solid var(--black)}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- Announcement ticker -->
+<div class="ticker" aria-label="Latest announcements"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- Navigation -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#home" class="brand" aria-label="Home">
+      <img src="images/logo.png" alt="GSS UNILAG logo">
+      <span>GSS UNILAG<small>Geosciences Students' Society</small></span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#exco">Exco</a></li>
+      <li><a href="#programmes">Programmes</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+    <a href="#join" class="btn">Join Us</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="Mobile menu">
+  <a href="#about">About</a><a href="#wins">Wins</a><a href="#exco">Exco</a><a href="#programmes">Programmes</a>
+  <a href="#explore">Disciplines</a><a href="#events">Events</a><a href="#news">News</a><a href="#gallery">Gallery</a>
+  <a href="#resources">Resources</a><a href="#faq">FAQ</a><a href="#join">Join / Contact</a>
+</nav>
+<div class="scrim" id="scrim"></div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <span class="eyebrow" id="heroEyebrow">GeoNova 26/27 Administration</span>
+      <h1>Reading the <em>Earth.</em><br>Building its <span>future.</span></h1>
+      <p>The Geosciences Students' Society is the official student body of the Department of Geosciences, University of Lagos. We connect students to the field, the industry and each other, from 100 Level to final year.</p>
+      <div class="hero-cta">
+        <a href="#exco" class="btn azure">Meet the Exco
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#wins" class="btn ghost">See our wins</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>3x</b><small>NAPE Basin Evaluation champions</small></div>
+        <div><b>2026</b><small>New Centre of Excellence</small></div>
+        <div><b>@gssunilag</b><small>Everywhere online</small></div>
+      </div>
+    </div>
+    <div class="hero-art rv">
+      <div class="frame corners"><img src="images/centre.jpg" alt="Geosciences Centre of Excellence, University of Lagos" data-fallback="GCE"></div>
+      <div class="tag-card">UNILAG &middot; Akoka</div>
+      <div class="badge-card"><b>Champions</b><span>2025 NAPE Basin Evaluation Competition, ahead of 25 other universities</span></div>
+    </div>
+  </div>
+  <div class="strata" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+</section>
+
+<!-- STATS -->
+<section class="sec" style="padding-bottom:0">
+  <div class="wrap"><div class="stats rv" id="stats"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div class="about-img rv">
+      <div class="ph corners"><img src="images/slc.jpg" alt="Students at the Student Leadership Conference 3.0" data-fallback="GSS"></div>
+      <div class="stamp"><b>Student Leadership Conference 3.0</b>Earth, Energy, and the Geoscientist of Tomorrow</div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Who we are</span>
+      <h2 style="margin:12px 0 18px">A society built on rock-solid foundations</h2>
+      <p class="lead">We represent every student of the Department of Geosciences. Our job is simple: make your time here richer than the syllabus. That means field exposure, industry access, competitions, welfare, and a community that has your back.</p>
+      <div class="pillars" id="pillars"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WELCOME NOTE -->
+<section class="sec welcome">
+  <div class="wrap welcome-grid rv">
+    <div class="mark"><img src="images/logo.png" alt="" data-fallback="GSS"></div>
+    <div>
+      <span class="eyebrow" style="color:var(--azure)">Welcome note</span>
+      <p class="big" style="margin-top:14px">Welcome to GeoNova. This session, we are focused on putting tools in your hands, opening industry doors, and keeping our department's winning culture alive. Walk with us.</p>
+      <p class="sig">The GeoNova 26/27 Executive Council</p>
+    </div>
+  </div>
+</section>
+
+<!-- WINS -->
+<section class="sec wins" id="wins">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Hall of fame</span><h2>Wins and milestones</h2></div>
+      <p class="lead">From national basin evaluation titles to a world-class new home, here is what our department has been up to.</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- CENTRE OF EXCELLENCE -->
+<section class="centre" id="centre">
+  <div class="pic"><img src="images/centre.jpg" alt="Geosciences Centre of Excellence building" data-fallback="GCE"></div>
+  <div class="txt rv">
+    <span class="eyebrow">Our new home</span>
+    <h2>Geosciences Centre of Excellence</h2>
+    <p>Commissioned on April 17, 2026 by Lagos State Governor Babajide Sanwo-Olu, the Centre is a five-level, solar-powered learning and research hub delivered by SNEPCo, NNPC Ltd and NCDMB in partnership with UNILAG. It supports B.Sc., M.Sc. and Ph.D. training.</p>
+    <div class="facts">
+      <div><b>5 levels</b><small>Learning and research space</small></div>
+      <div><b>Solar powered</b><small>Built for steady uptime</small></div>
+      <div><b>Labs</b><small>Hydrogeology, mineralogy, environmental geology</small></div>
+      <div><b>B.Sc. to Ph.D.</b><small>Training at every level</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXCO -->
+<section class="sec" id="exco">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow" id="excoEyebrow">GeoNova 26/27</span><h2>Meet your executives</h2></div>
+      <div class="exco-tabs" id="excoTabs" role="group" aria-label="Filter executives"></div>
+    </div>
+    <div class="exco-grid" id="excoGrid"></div>
+    <div class="archive rv">
+      <p><b>Past administrations.</b> Every exco set is part of our story. Previous councils will be archived here so the society's history stays in one place.</p>
+      <a href="#join" class="btn ghost">Send us old exco photos</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section class="sec" id="programmes" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">What we do</span><h2>Programmes that go beyond the classroom</h2></div>
+      <p class="lead">Every session is packed. These are the pillars we run year in, year out.</p>
+    </div>
+    <div class="prog-wrap"><div class="prog-grid rv" id="progGrid"></div></div>
+  </div>
+</section>
+
+<!-- DISCIPLINE EXPLORER -->
+<section class="sec explore" id="explore">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Explore the field</span><h2>Where can geosciences take you?</h2></div>
+      <p class="lead">Pick a path to see what it covers, the tools professionals use, and where it leads.</p>
+    </div>
+    <div class="ex-grid rv">
+      <div class="ex-tabs" id="exTabs" role="tablist" aria-label="Disciplines"></div>
+      <div class="ex-panel" id="exPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="sec" id="events">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Calendar</span><h2>Events</h2></div>
+      <div class="exco-tabs" role="tablist" aria-label="Event filter">
+        <button class="chip" role="tab" aria-selected="true" data-ev="upcoming">Upcoming</button>
+        <button class="chip" role="tab" aria-selected="false" data-ev="past">Past</button>
+      </div>
+    </div>
+    <div class="ev-list" id="evList"></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="sec" id="news" style="background:var(--azure-tint)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Newsroom</span><h2>Latest from GSS</h2></div>
+      <a href="https://unilag.edu.ng/news/" target="_blank" rel="noopener" class="btn ghost">UNILAG newsroom</a>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Gallery</span><h2>Moments in the field and beyond</h2></div>
+      <p class="lead">Tap any photo to view it full size. Use arrow keys to browse.</p>
+    </div>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="sec" id="resources" style="background:var(--brown-tint)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Resources</span><h2>Study smarter, level by level</h2></div>
+      <p class="lead">Core focus areas by level, the software worth learning early, and links every geoscience student should bookmark.</p>
+    </div>
+    <div class="levels rv" id="levels"></div>
+    <div class="res-row">
+      <div class="res-box rv" style="background:var(--white)"><h3>Software to learn</h3><div class="soft" id="soft"></div><p class="form-note" style="margin-top:16px;border-left:4px solid var(--brown);padding-left:12px">Tip: QGIS and Python are free. Ask the department about academic licences for industry software like Petrel.</p></div>
+      <div class="res-box rv" style="background:var(--white)"><h3>Useful links</h3><ul class="link-list" id="links2"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 style="margin:12px 0 16px">Questions students ask</h2>
+      <p class="lead">Can't find your answer? Send a message below and the exco will get back to you.</p>
+      <a href="#join" class="btn" style="margin-top:24px">Ask the exco</a>
+    </div>
+    <div id="faqList" class="rv"></div>
+  </div>
+</section>
+
+<!-- JOIN / CONTACT -->
+<section class="sec join" id="join">
+  <div class="wrap join-grid">
+    <div class="rv">
+      <span class="eyebrow">Get involved</span>
+      <h2>Join the society. Find your people.</h2>
+      <p class="lead">Every student of the Department of Geosciences is a member. Volunteer for committees, compete, write for our pages, or just show up. Follow us to never miss an update.</p>
+      <div class="socials" id="socials"></div>
+    </div>
+    <form id="form" class="notch rv" novalidate>
+      <h3>Send the exco a message</h3>
+      <div class="row2">
+        <div class="field"><label for="fn">Full name</label><input id="fn" name="name" required autocomplete="name"><span class="err"></span></div>
+        <div class="field"><label for="lv">Level</label>
+          <select id="lv" name="level"><option>100 Level</option><option>200 Level</option><option>300 Level</option><option>400 Level</option><option>500 Level</option><option>Alumni</option><option>Guest / Partner</option></select><span class="err"></span></div>
+      </div>
+      <div class="field"><label for="em">Email</label><input id="em" name="email" type="email" required autocomplete="email"><span class="err"></span></div>
+      <div class="field"><label for="tp">Reason</label>
+        <select id="tp" name="topic"><option>General enquiry</option><option>Join a committee</option><option>Welfare concern</option><option>Partnership / Sponsorship</option><option>Resources request</option></select><span class="err"></span></div>
+      <div class="field"><label for="ms">Message</label><textarea id="ms" name="message" rows="4" required></textarea><span class="err"></span></div>
+      <button class="btn" type="submit">Send message
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="form-note">This opens your email app with the message ready to send.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="f-brand"><img src="images/logo.png" alt=""><span>Geosciences Students' Society<br><small style="font-weight:500;color:var(--azure)">University of Lagos</small></span></div>
+        <p>Department of Geosciences, Faculty of Physical and Earth Sciences, University of Lagos, Akoka, Lagos.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#wins">Wins</a></li><li><a href="#exco">Executives</a></li><li><a href="#programmes">Programmes</a></li></ul></div>
+      <div><h4>Students</h4><ul><li><a href="#events">Events</a></li><li><a href="#resources">Resources</a></li><li><a href="#faq">FAQ</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
+      <div><h4>Connect</h4><ul id="fSocial"></ul></div>
+    </div>
+    <div class="f-bottom">
+      <span>&copy; <span id="yr"></span> Geosciences Students' Society, UNILAG. All rights reserved.</span>
+      <span id="fSession"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Exco modal -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="bg" data-close></div>
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="mName">
+    <button class="x" data-close aria-label="Close">&times;</button>
+    <div class="ph" id="mPh"></div>
+    <div class="body"><span class="role" id="mPost"></span><h3 id="mName"></h3><p id="mSession"></p><ul id="mDuties"></ul></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+  <button class="x" data-lbclose aria-label="Close">&times;</button>
+  <button class="nav-b prev" aria-label="Previous">&#8592;</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="nav-b next" aria-label="Next">&#8594;</button>
+</div>
+
+<button id="top" aria-label="Back to top">&#8593;</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   EDIT HERE: all site content lives in this SITE object.
+   New exco sets only need to change text and image paths below.
+   Images go in the /images folder (exco photos in /images/exco).
+   ========================================================= */
+const SITE = {
+  administration: "GeoNova 26/27",
+  session: "2026/2027",
+  email: "gssunilag@gmail.com", // CHANGE to the society's real email
+  socials: [
+    { name: "Instagram", handle: "@gssunilag", url: "https://instagram.com/gssunilag" },
+    { name: "X (Twitter)", handle: "@gssunilag", url: "https://x.com/gssunilag" },
+    { name: "TikTok", handle: "@gssunilag", url: "https://tiktok.com/@gssunilag" },
+    { name: "LinkedIn", handle: "gssunilag", url: "https://linkedin.com/company/gssunilag" }
+  ],
+
+  ticker: [
+    "UNILAG crowned overall champions, 2025 NAPE Basin Evaluation Competition",
+    "Geosciences Centre of Excellence commissioned, April 17, 2026",
+    "GeoNova 26/27 executives inaugurated",
+    "Student Leadership Conference 3.0: Earth, Energy, and the Geoscientist of Tomorrow",
+    "Follow @gssunilag for updates"
+  ],
+
+  stats: [
+    { n: 3, suffix: "x", label: "NAPE Basin Evaluation titles (2017, 2019, 2025)" },
+    { n: 26, suffix: "", label: "Universities in the 2025 competition we won" },
+    { n: 1.5, prefix: "\u20A6", suffix: "M", label: "Prize won by our 2025 champions", dec: 1 },
+    { n: 5, suffix: "", label: "Levels in our new Centre of Excellence" },
+    { n: 10, suffix: "", label: "Executives serving in GeoNova 26/27" }
+  ],
+
+  pillars: [
+    { icon: "field", title: "Field exposure", text: "Mapping exercises, excursions and site visits that make textbook geology real." },
+    { icon: "brief", title: "Industry access", text: "Career talks, mentorship and conferences with energy, mining and environmental firms." },
+    { icon: "trophy", title: "Competition culture", text: "We back teams for basin evaluation, hackathons, quizzes and paper contests." },
+    { icon: "heart", title: "Student welfare", text: "A voice for every student to the department, faculty and university." }
+  ],
+
+  wins: [
+    { date: "Apr 2026", kind: "Milestone", title: "Geosciences Centre of Excellence commissioned",
+      text: "Lagos State Governor Babajide Sanwo-Olu commissioned the five-level, solar-powered Centre, funded by NNPC Ltd, SNEPCo and NCDMB in collaboration with UNILAG.",
+      tags: ["NNPC Ltd", "SNEPCo", "NCDMB", "B.Sc. to Ph.D. training"] },
+    { date: "Nov 2025", kind: "Champions", title: "Overall winners, 2025 NAPE Basin Evaluation Competition",
+      text: "Competing against 26 universities with a Deep Offshore Niger Delta dataset, UNILAG took first place at the NAPE Annual International Conference, ahead of the University of Ibadan (2nd) and Akwa Ibom State University (3rd). The team won \u20A61,500,000.",
+      tags: ["Akande Habib Opeyemi", "Demilade Kolawole-Jacobs", "Ewherido Ogheneruona", "Akindele Akindimeji (contributor)"] },
+    { date: "Nov 2025", kind: "Event", title: "Geosciences Town and Gown Lecture Series 1.0",
+      text: "The department hosted the maiden three-day series themed 'Overview of the Geosciences', covering energy transition, subsurface exploration, reservoir studies and emerging technologies.",
+      tags: ["Nov 24 to 26, 2025", "Maiden edition"] },
+    { date: "Sep 2023", kind: "Host", title: "Hosted the 11th NAPE-NMGS Mini-Conference",
+      text: "Students from geosciences departments across Nigeria gathered at UNILAG under the theme 'Retooling Geoscience Education in Nigeria: Current Trends and Emerging Realities'.",
+      tags: ["NAPE", "NMGS", "National"] },
+    { date: "Nov 2019", kind: "Champions", title: "Winners, 2019 NAPE Basin Evaluation Competition",
+      text: "UNILAG beat UNN, Crawford University, AKSU and COOU in the finals held at Eko Hotels and Suites, Lagos.",
+      tags: ["Faleye Oluwatosin", "Osasona Joshua", "Komolafe Eniola"] },
+    { date: "2017", kind: "Champions", title: "Winners, 2017 NAPE Basin Evaluation Competition",
+      text: "The first of our three national basin evaluation titles, and the start of a proud winning culture.",
+      tags: ["First title"] }
+  ],
+
+  // Exco: group = "core" or "officers". First person is shown as the lead card.
+  exco: [
+    { name: "Adepoju Ahmed", post: "President", group: "core", img: "images/exco/adepoju-ahmed.jpg",
+      duties: ["Leads the society and chairs executive meetings", "Represents students to the department, faculty and university", "Sets the vision for the session"] },
+    { name: "Iwuoha David", post: "Vice President", group: "core", img: "images/exco/iwuoha-david.jpg",
+      duties: ["Supports the President and steps in when needed", "Coordinates committees and projects", "Drives key society initiatives"] },
+    { name: "Adenmosun Oluwatobiloba", post: "General Secretary", group: "core", img: "images/exco/adenmosun-oluwatobiloba.jpg",
+      duties: ["Keeps society records and meeting minutes", "Handles official correspondence", "Coordinates the secretariat"] },
+    { name: "Jolayemi David", post: "Assistant General Secretary", group: "core", img: "images/exco/jolayemi-david.jpg",
+      duties: ["Assists the General Secretary", "Manages attendance and documentation", "Supports communication with members"] },
+    { name: "Akanji Omobolanle", post: "Financial Secretary", group: "core", img: "images/exco/akanji-omobolanle.jpg",
+      duties: ["Keeps the society's financial records", "Tracks dues and receipts", "Prepares financial reports"] },
+    { name: "Blessing Godman", post: "Treasurer", group: "core", img: "images/exco/blessing-godman.jpg",
+      duties: ["Holds custody of society funds", "Makes approved payments", "Works with the Financial Secretary on accountability"] },
+    { name: "Adejare Abdullateef", post: "Public Relations Officer", group: "officers", img: "images/exco/adejare-abdullateef.jpg",
+      duties: ["Runs publicity and social media", "Manages the society's public image", "Keeps this website up to date"] },
+    { name: "Okorn Virtue", post: "Social Secretary", group: "officers", img: "images/exco/okorn-virtue.jpg",
+      duties: ["Plans social events and gatherings", "Builds community spirit", "Coordinates dinners and celebrations"] },
+    { name: "Oguelwu Amarachukwu", post: "Sports Secretary", group: "officers", img: "images/exco/oguelwu-amarachukwu.jpg",
+      duties: ["Organises the department's sports teams", "Coordinates inter-departmental games", "Promotes fitness and wellbeing"] },
+    { name: "Odukoya", post: "Welfare Secretary", group: "officers", img: "images/exco/odukoya.jpg",
+      duties: ["Looks after student welfare concerns", "Links students to support", "Advocates for member wellbeing"] }
+  ],
+
+  programmes: [
+    { icon: "field", title: "Field trips and mapping", text: "Guided excursions to outcrops, quarries and sites that bring structure, stratigraphy and petrology to life." },
+    { icon: "mic", title: "Student Leadership Conference", text: "Our flagship conference, now in its third edition, on leadership, energy and the geoscientist of tomorrow." },
+    { icon: "brief", title: "Career and industry talks", text: "Sessions with professionals across oil and gas, mining, groundwater, environment and data." },
+    { icon: "screen", title: "Software bootcamps", text: "Hands-on training in interpretation, GIS and data tools that employers expect." },
+    { icon: "trophy", title: "Competition support", text: "Preparation and mentorship for basin evaluation, hackathons, quizzes and paper presentations." },
+    { icon: "ball", title: "Sports and social life", text: "Departmental games, dinners and celebrations, because great geoscientists need good friends too." }
+  ],
+
+  disciplines: [
+    { name: "Petroleum Geology", text: "Find, evaluate and develop oil and gas resources by understanding source rocks, reservoirs, traps and seals.",
+      tools: ["Petrel", "Techlog", "Kingdom", "Interactive Petrophysics"], careers: ["Exploration geologist", "Reservoir geologist", "Petrophysicist", "Basin analyst"] },
+    { name: "Geophysics", text: "Image the subsurface with seismic, gravity, magnetic and electrical methods to see what lies beneath.",
+      tools: ["Petrel", "Oasis montaj", "Res2DInv", "Python"], careers: ["Seismic interpreter", "Processing geophysicist", "Near-surface geophysicist", "Data scientist"] },
+    { name: "Hydrogeology", text: "Study how groundwater moves and how to supply clean water to growing cities like Lagos.",
+      tools: ["MODFLOW", "AquiferTest", "QGIS", "Surfer"], careers: ["Hydrogeologist", "Water resources consultant", "Borehole engineer", "Environmental analyst"] },
+    { name: "Mineralogy and Petrology", text: "Understand minerals and rocks, how they form, and how they become resources for industry.",
+      tools: ["Petrographic microscope", "XRD data tools", "Leapfrog", "ArcGIS"], careers: ["Mining geologist", "Exploration geologist", "Geochemist", "Quality control analyst"] },
+    { name: "Environmental Geology", text: "Assess pollution, erosion, flooding and coastal change, and design solutions that protect people.",
+      tools: ["ArcGIS", "QGIS", "Google Earth Engine", "RockWorks"], careers: ["Environmental consultant", "EIA specialist", "Climate risk analyst", "Regulator"] },
+    { name: "Sedimentology and Stratigraphy", text: "Read the rock record layer by layer to reconstruct ancient environments and predict reservoirs.",
+      tools: ["Petrel", "StrataBugs", "SedLog", "Python"], careers: ["Sedimentologist", "Biostratigrapher", "Reservoir geologist", "Researcher"] }
+  ],
+
+  events: {
+    upcoming: [
+      { d: "TBA", m: "Soon", title: "GeoNova Freshers' Welcome", text: "Orientation for new students: meet the exco, learn the department, get your bearings.", where: "Department of Geosciences" },
+      { d: "TBA", m: "Soon", title: "Field Mapping Excursion", text: "A guided field outing for practical mapping and sample collection.", where: "Venue to be announced" },
+      { d: "TBA", m: "Soon", title: "Industry Career Talk Series", text: "Professionals share career paths, internships and skills that matter.", where: "Geosciences Centre of Excellence" },
+      { d: "TBA", m: "Soon", title: "Software Bootcamp", text: "Hands-on sessions on subsurface interpretation and GIS tools.", where: "Geosciences Centre of Excellence" }
+    ],
+    past: [
+      { d: "SLC", m: "3.0", title: "Student Leadership Conference 3.0", text: "Theme: Earth, Energy, and the Geoscientist of Tomorrow.", where: "University of Lagos" },
+      { d: "17", m: "Apr 2026", title: "Commissioning of the Geosciences Centre of Excellence", text: "Our new five-level home was officially opened.", where: "Science Complex, UNILAG" },
+      { d: "24", m: "Nov 2025", title: "Town and Gown Lecture Series 1.0", text: "Three days on energy transition, subsurface exploration and emerging technologies.", where: "Department of Geosciences" },
+      { d: "13", m: "Nov 2025", title: "NAPE Basin Evaluation Competition Award Night", text: "UNILAG declared overall champions.", where: "NAPE Annual International Conference" }
+    ]
+  },
+
+  news: [
+    { cat: "Champions", title: "UNILAG wins the 2025 NAPE Basin Evaluation Competition", text: "Our team beat 25 other universities with their interpretation of a Deep Offshore Niger Delta dataset, taking home \u20A61.5 million.", img: "", url: "https://unilag.edu.ng/unilag-geosciences-shines-as-students-win-top-prize-at-2025-nape-basin-evaluation-contest/" },
+    { cat: "Facilities", title: "Geosciences Centre of Excellence opens its doors", text: "A five-level, solar-powered hub for teaching and research.", img: "images/centre.jpg", url: "#centre" },
+    { cat: "Conference", title: "Student Leadership Conference 3.0 holds", text: "Students gathered to talk Earth, energy and the future geoscientist.", img: "images/slc.jpg", url: "#events" }
+  ],
+
+  gallery: [
+    { src: "images/centre.jpg", cap: "Geosciences Centre of Excellence", cls: "w3 h2" },
+    { src: "images/slc.jpg", cap: "Student Leadership Conference 3.0", cls: "w3 h2" },
+    { src: "images/exco-flyer.jpg", cap: "Meet your Executives: GeoNova 26/27", cls: "w2 h2" },
+    { src: "images/exco/adepoju-ahmed.jpg", cap: "Adepoju Ahmed, President", cls: "h2" },
+    { src: "images/exco/iwuoha-david.jpg", cap: "Iwuoha David, Vice President", cls: "h2" },
+    { src: "images/exco/akanji-omobolanle.jpg", cap: "Akanji Omobolanle, Financial Secretary", cls: "w2 h2" }
+  ],
+
+  levels: [
+    { lv: "100", title: "Foundations", items: ["Physical geology", "Earth materials", "Maths and physics basics"] },
+    { lv: "200", title: "Building blocks", items: ["Mineralogy", "Intro to petrology", "Field methods"] },
+    { lv: "300", title: "Core geology", items: ["Structural geology", "Sedimentology", "Geological mapping"] },
+    { lv: "400", title: "Applied focus", items: ["Petroleum geology", "Hydrogeology", "SIWES / industrial training"] },
+    { lv: "500", title: "Final year", items: ["Research project", "Advanced electives", "Defence preparation"] }
+  ],
+
+  software: [
+    { n: "Petrel", d: "Subsurface interpretation" },
+    { n: "QGIS / ArcGIS", d: "Mapping and GIS" },
+    { n: "Python", d: "Data and automation" },
+    { n: "Surfer", d: "Contouring and grids" },
+    { n: "Excel", d: "Data handling" },
+    { n: "Google Earth Pro", d: "Field planning" }
+  ],
+
+  links: [
+    { t: "University of Lagos", d: "Official university website", url: "https://unilag.edu.ng" },
+    { t: "NAPE", d: "Nigerian Association of Petroleum Explorationists", url: "https://www.nape.org.ng" },
+    { t: "AAPG", d: "American Association of Petroleum Geologists", url: "https://www.aapg.org" },
+    { t: "SEG", d: "Society of Exploration Geophysicists", url: "https://seg.org" },
+    { t: "SPE", d: "Society of Petroleum Engineers", url: "https://www.spe.org" },
+    { t: "USGS", d: "Free maps, data and publications", url: "https://www.usgs.gov" }
+  ],
+
+  faqs: [
+    { q: "Who is a member of the Geosciences Students' Society?", a: "Every registered student of the Department of Geosciences, University of Lagos, is a member of the society." },
+    { q: "How do I get involved beyond attending events?", a: "Use the form on this page and choose 'Join a committee'. The exco will reach out when committees are being formed." },
+    { q: "How do I raise a welfare issue?", a: "Send a message with the 'Welfare concern' option or reach the Welfare Secretary directly. Concerns are handled with discretion." },
+    { q: "Can students from other departments attend GSS events?", a: "Many of our talks and conferences are open to the wider UNILAG community. Check each event's details." },
+    { q: "Our company wants to partner with or sponsor GSS. Who do we contact?", a: "Choose 'Partnership / Sponsorship' in the contact form and the President and PRO will respond." },
+    { q: "Where can I find past questions and course materials?", a: "Choose 'Resources request' in the contact form, or ask your class representative." }
+  ]
+};
+
+/* ================= Icons (square, line style) ================= */
+const ICONS = {
+  field:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><path d="M3 20l6-11 4 6 3-4 5 9z"/><path d="M14 4l3 3M17 4l-3 3"/></svg>',
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13"/><path d="M8 7V4h8v3M3 13h18"/></svg>',
+  trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v6a5 5 0 01-10 0zM7 6H3v3a4 4 0 004 4M17 6h4v3a4 4 0 01-4 4M12 15v4M8 21h8"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20L4 12V6l4-2 4 4 4-4 4 2v6z"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="11"/><path d="M5 11v1a7 7 0 0014 0v-1M12 19v3"/></svg>',
+  screen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg>',
+  ball:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM4 12h16M12 4v16"/></svg>'
+};
+const SOCIAL_ICONS = {
+  "Instagram":'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><rect x="8" y="8" width="8" height="8"/><path d="M17 6.5h.01"/></svg>',
+  "X (Twitter)":'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.4L1.8 3h6.4l4.4 5.9zm-1.1 16.2h1.7L7.5 4.7H5.7z"/></svg>',
+  "TikTok":'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.2 1.8 3.6 4 3.9v3.3c-1.5 0-2.9-.4-4-1.1v6.4a6 6 0 11-6-6c.3 0 .6 0 .9.1v3.4a2.6 2.6 0 102 2.5V3z"/></svg>',
+  "LinkedIn":'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h4v12H3zM5 3a2.2 2.2 0 110 4.4A2.2 2.2 0 015 3zM9 9h3.8v1.7c.6-1 1.9-2 3.9-2 4.1 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21H9z"/></svg>'
+};
+
+/* ================= Helpers ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const initials = n => n.split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Image with branded fallback if the file is missing
+const img = (src, alt, fb) => `<img src="${src}" alt="${alt}" loading="lazy" data-fallback="${fb || initials(alt || "GSS")}">`;
+function fallbacks(root = document) {
+  $$("img[data-fallback]", root).forEach(im => {
+    const fail = () => { const p = im.parentElement; p.classList.add("noimg"); p.dataset.initials = im.dataset.fallback; im.remove(); };
+    if (im.complete && im.naturalWidth === 0 && im.getAttribute("src")) fail(); else im.addEventListener("error", fail, { once: true });
+  });
+}
+
+/* ================= Render ================= */
+$("#ticker").innerHTML = [...SITE.ticker, ...SITE.ticker].map(t => `<span>${t}</span>`).join("");
+$("#heroEyebrow").textContent = SITE.administration + " Administration";
+$("#excoEyebrow").textContent = SITE.administration + " \u00B7 " + SITE.session + " Session";
+$("#fSession").textContent = SITE.administration + " \u00B7 " + SITE.session + " Session";
+$("#yr").textContent = new Date().getFullYear();
+
+$("#stats").innerHTML = SITE.stats.map(s =>
+  `<div class="stat"><b data-count="${s.n}" data-dec="${s.dec || 0}" data-pre="${s.prefix || ""}" data-suf="${s.suffix || ""}">${s.prefix || ""}${s.n}${s.suffix || ""}</b><span>${s.label}</span></div>`).join("");
+
+$("#pillars").innerHTML = SITE.pillars.map(p =>
+  `<div class="pillar corners"><div class="ico">${ICONS[p.icon]}</div><h3>${p.title}</h3><p>${p.text}</p></div>`).join("");
+
+$("#timeline").innerHTML = SITE.wins.map(w =>
+  `<div class="t-item rv"><div class="t-date">${w.date}</div><div class="t-card">
+    <span class="kind ${w.kind === "Champions" ? "" : "b"}">${w.kind}</span><h3>${w.title}</h3><p>${w.text}</p>
+    <ul>${w.tags.map(t => `<li>${t}</li>`).join("")}</ul></div></div>`).join("");
+
+// Exco
+const groups = [["all", "All"], ["core", "Principal officers"], ["officers", "Officers"]];
+$("#excoTabs").innerHTML = groups.map((g, i) => `<button class="chip" aria-pressed="${i === 0}" data-g="${g[0]}">${g[1]}</button>`).join("");
+function renderExco(g = "all") {
+  const list = SITE.exco.map((e, i) => ({ ...e, i })).filter(e => g === "all" || e.group === g);
+  $("#excoGrid").innerHTML = list.map((e, k) =>
+    `<button class="exco-card rv in ${g === "all" && k === 0 ? "lead-card" : ""}" data-i="${e.i}" aria-label="${e.name}, ${e.post}">
+      <div class="ph">${img(e.img, e.name)}</div>
+      <div class="meta"><b>${e.name}</b><span>${e.post}</span></div></button>`).join("");
+  fallbacks($("#excoGrid"));
+}
+renderExco();
+$("#excoTabs").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  $$(".chip", $("#excoTabs")).forEach(c => c.setAttribute("aria-pressed", c === b));
+  renderExco(b.dataset.g);
+});
+
+// Exco modal
+const modal = $("#modal"); let lastFocus;
+$("#excoGrid").addEventListener("click", e => {
+  const c = e.target.closest(".exco-card"); if (!c) return;
+  const p = SITE.exco[c.dataset.i]; lastFocus = c;
+  $("#mPh").className = "ph"; $("#mPh").innerHTML = img(p.img, p.name);
+  $("#mPost").textContent = p.post; $("#mName").textContent = p.name;
+  $("#mSession").textContent = `Serving in the ${SITE.administration} administration, ${SITE.session} session.`;
+  $("#mDuties").innerHTML = p.duties.map(d => `<li>${d}</li>`).join("");
+  fallbacks(modal);
+  // open from the card's position (spatial consistency)
+  const r = c.getBoundingClientRect();
+  $(".box", modal).style.transformOrigin = `${r.left + r.width / 2}px ${r.top + r.height / 2}px`;
+  modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden";
+  $(".x", modal).focus();
+});
+function closeModal() { modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; lastFocus && lastFocus.focus(); }
+$$("[data-close]", modal).forEach(b => b.addEventListener("click", closeModal));
+
+// Programmes
+$("#progGrid").innerHTML = SITE.programmes.map((p, i) =>
+  `<div class="prog"><span class="num">0${i + 1}</span><div class="ico">${ICONS[p.icon]}</div><h3>${p.title}</h3><p>${p.text}</p></div>`).join("");
+
+// Discipline explorer
+$("#exTabs").innerHTML = SITE.disciplines.map((d, i) =>
+  `<button class="ex-tab" role="tab" aria-selected="${i === 0}" data-i="${i}" tabindex="${i === 0 ? 0 : -1}">${d.name}</button>`).join("");
+function showDisc(i) {
+  const d = SITE.disciplines[i], p = $("#exPanel");
+  p.classList.remove("swap"); void p.offsetWidth; p.classList.add("swap");
+  p.innerHTML = `<span class="eyebrow">Path ${String(i + 1).padStart(2, "0")}</span><h3>${d.name}</h3><p>${d.text}</p>
+    <div class="ex-cols"><div class="ex-box"><h4>Tools to learn</h4><div class="tags">${d.tools.map(t => `<span>${t}</span>`).join("")}</div></div>
+    <div class="ex-box"><h4>Career paths</h4><div class="tags">${d.careers.map(t => `<span>${t}</span>`).join("")}</div></div></div>`;
+}
+showDisc(0);
+$("#exTabs").addEventListener("click", e => {
+  const b = e.target.closest(".ex-tab"); if (!b) return; selectTab(b);
+});
+$("#exTabs").addEventListener("keydown", e => {
+  const tabs = $$(".ex-tab"), i = tabs.indexOf(document.activeElement);
+  if (["ArrowDown", "ArrowRight"].includes(e.key)) { e.preventDefault(); selectTab(tabs[(i + 1) % tabs.length]); }
+  if (["ArrowUp", "ArrowLeft"].includes(e.key)) { e.preventDefault(); selectTab(tabs[(i - 1 + tabs.length) % tabs.length]); }
+});
+function selectTab(b) {
+  $$(".ex-tab").forEach(t => { t.setAttribute("aria-selected", t === b); t.tabIndex = t === b ? 0 : -1; });
+  b.focus({ preventScroll: true }); showDisc(+b.dataset.i);
+}
+
+// Events
+function renderEvents(k) {
+  $("#evList").innerHTML = SITE.events[k].map(e =>
+    `<div class="ev"><div class="date"><b>${e.d}</b><small>${e.m}</small></div>
+     <div><h3>${e.title}</h3><p>${e.text}</p><span class="where">${e.where}</span></div>
+     <span class="state ${k === "upcoming" ? "up" : ""}">${k === "upcoming" ? "Coming up" : "Held"}</span></div>`).join("");
+}
+renderEvents("upcoming");
+$$("[data-ev]").forEach(b => b.addEventListener("click", () => {
+  $$("[data-ev]").forEach(c => c.setAttribute("aria-selected", c === b)); renderEvents(b.dataset.ev);
+}));
+
+// News
+const [lead, ...rest] = SITE.news;
+const postHTML = (n, big) => `<a class="post ${big ? "big" : ""} rv" href="${n.url}" ${n.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>
+  ${n.img ? `<div class="ph">${img(n.img, n.title, "GSS")}</div>` : `<div class="ph pattern">GSS</div>`}
+  <div class="body"><span class="cat">${n.cat}</span><h3>${n.title}</h3><p>${n.text}</p><span class="more">Read more</span></div></a>`;
+$("#newsGrid").innerHTML = postHTML(lead, true) + `<div class="news-side">${rest.slice(0, 1).map(n => postHTML(n)).join("")}</div>` +
+  `<div class="news-side">${rest.slice(1).map(n => postHTML(n)).join("")}</div>`;
+
+// Gallery + lightbox
+$("#gal").innerHTML = SITE.gallery.map((g, i) =>
+  `<button class="g ${g.cls || ""} rv" data-i="${i}" aria-label="Open photo: ${g.cap}">${img(g.src, g.cap, "GSS")}<span>${g.cap}</span></button>`).join("");
+let lbI = 0; const lb = $("#lb");
+function showLb(i) { lbI = (i + SITE.gallery.length) % SITE.gallery.length; const g = SITE.gallery[lbI]; $("#lbImg").src = g.src; $("#lbImg").alt = g.cap; $("#lbCap").textContent = g.cap; }
+$("#gal").addEventListener("click", e => {
+  const b = e.target.closest(".g"); if (!b) return; lastFocus = b;
+  const r = b.getBoundingClientRect(); $("figure", lb).style.transformOrigin = `${r.left + r.width / 2}px ${r.top + r.height / 2}px`;
+  showLb(+b.dataset.i); lb.classList.add("open"); lb.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; $("[data-lbclose]").focus();
+});
+function closeLb() { lb.classList.remove("open"); lb.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; lastFocus && lastFocus.focus(); }
+$("[data-lbclose]").addEventListener("click", closeLb);
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+$(".prev", lb).addEventListener("click", () => showLb(lbI - 1));
+$(".next", lb).addEventListener("click", () => showLb(lbI + 1));
+// swipe in lightbox
+let sx = null;
+lb.addEventListener("pointerdown", e => sx = e.clientX);
+lb.addEventListener("pointerup", e => { if (sx === null) return; const dx = e.clientX - sx; if (Math.abs(dx) > 50) showLb(lbI + (dx < 0 ? 1 : -1)); sx = null; });
+
+// Resources
+$("#levels").innerHTML = SITE.levels.map(l =>
+  `<div class="lvl"><b>${l.lv}L</b><h3>${l.title}</h3><ul>${l.items.map(i => `<li>${i}</li>`).join("")}</ul></div>`).join("");
+$("#soft").innerHTML = SITE.software.map(s => `<div><b>${s.n}</b>${s.d}</div>`).join("");
+$("#links2").innerHTML = SITE.links.map(l => `<li><a href="${l.url}" target="_blank" rel="noopener"><span>${l.t}<small>${l.d}</small></span></a></li>`).join("");
+
+// FAQ
+$("#faqList").innerHTML = SITE.faqs.map((f, i) =>
+  `<div class="qa"><button aria-expanded="false" aria-controls="a${i}">${f.q}<i aria-hidden="true"></i></button>
+   <div class="ans" id="a${i}"><div><p>${f.a}</p></div></div></div>`).join("");
+$("#faqList").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const q = b.parentElement, open = !q.classList.contains("open");
+  q.classList.toggle("open", open); b.setAttribute("aria-expanded", open);
+});
+
+// Socials
+$("#socials").innerHTML = SITE.socials.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${SOCIAL_ICONS[s.name] || ""}<span>${s.name}<br><small style="opacity:.7">${s.handle}</small></span></a>`).join("");
+$("#fSocial").innerHTML = SITE.socials.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.name}</a></li>`).join("") + `<li><a href="mailto:${SITE.email}">${SITE.email}</a></li>`;
+
+fallbacks();
+
+/* ================= Interactions ================= */
+// Mobile drawer: enters and exits from the right
+const burger = $("#burger"), drawer = $("#drawer"), scrim = $("#scrim");
+function setDrawer(o) { drawer.classList.toggle("open", o); scrim.classList.toggle("show", o); burger.setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; }
+burger.addEventListener("click", () => setDrawer(!drawer.classList.contains("open")));
+scrim.addEventListener("click", () => setDrawer(false));
+$$("a", drawer).forEach(a => a.addEventListener("click", () => setDrawer(false)));
+
+// Keyboard
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") { if (modal.classList.contains("open")) closeModal(); if (lb.classList.contains("open")) closeLb(); if (drawer.classList.contains("open")) setDrawer(false); }
+  if (lb.classList.contains("open")) { if (e.key === "ArrowRight") showLb(lbI + 1); if (e.key === "ArrowLeft") showLb(lbI - 1); }
+});
+
+// Scroll: progress bar, nav shadow, back-to-top, active link (one rAF per frame)
+const nav = $("#nav"), prog = $("#progress"), topBtn = $("#top");
+const secs = $$("#links a").map(a => $(a.getAttribute("href")));
+let ticking = false;
+addEventListener("scroll", () => {
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+    nav.classList.toggle("scrolled", y > 10);
+    topBtn.classList.toggle("show", y > 700);
+    let cur = null; secs.forEach(s => { if (s && s.getBoundingClientRect().top < 140) cur = s.id; });
+    $$("#links a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + cur));
+    ticking = false;
+  });
+}, { passive: true });
+topBtn.addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+
+// Reveal on scroll + counters
+function countUp(el) {
+  const end = +el.dataset.count, dec = +el.dataset.dec, pre = el.dataset.pre, suf = el.dataset.suf;
+  if (reduceMotion) { el.textContent = pre + end.toFixed(dec) + suf; return; }
+  const t0 = performance.now(), dur = 1400;
+  (function f(t) {
+    const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+    el.textContent = pre + (end * e).toFixed(dec) + suf;
+    if (p < 1) requestAnimationFrame(f);
+  })(t0);
+}
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return;
+  en.target.classList.add("in");
+  $$("[data-count]", en.target).forEach(countUp);
+  io.unobserve(en.target);
+}), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
+$$(".rv").forEach(el => io.observe(el));
+
+// Contact form: validates inline, then opens the email app
+const form = $("#form"), toast = $("#toast");
+function showToast(m) { toast.textContent = m; toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 3200); }
+function check(el) {
+  const err = el.parentElement.querySelector(".err"); let msg = "";
+  if (el.required && !el.value.trim()) msg = "This field is required.";
+  else if (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value)) msg = "Enter a valid email.";
+  if (err) err.textContent = msg; return !msg;
+}
+$$("input,textarea", form).forEach(el => el.addEventListener("blur", () => check(el)));
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const ok = $$("input,textarea", form).map(check).every(Boolean);
+  if (!ok) { showToast("Please fix the highlighted fields."); return; }
+  const d = Object.fromEntries(new FormData(form));
+  const body = `Name: ${d.name}\nLevel: ${d.level}\nEmail: ${d.email}\n\n${d.message}`;
+  location.href = `mailto:${SITE.email}?subject=${encodeURIComponent("[GSS Website] " + d.topic)}&body=${encodeURIComponent(body)}`;
+  showToast("Opening your email app..."); form.reset();
+});
+</script>
+</body>
+</html>
